@@ -25,6 +25,7 @@ function App() {
             ] }
         >
             <Canvas
+                shadows
                 camera={ {
                     fov: 30,
                     near: 0.001,

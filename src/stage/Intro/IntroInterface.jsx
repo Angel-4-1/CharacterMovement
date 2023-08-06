@@ -1,16 +1,16 @@
 import { TRANSLATIONS } from "../../translations"
 import useGame, { STAGES, LANGUAGES } from '../../stores/useGame';
+import { useTranslation } from "../../useTranslation";
 import './style.css'
 
 export default function IntroInterface()
 {
-    const language = useGame((state) => state.language);
     const changeStage = useGame((state) => state.changeStage);
     const onUpdateStage = useGame((state) => state.onUpdateStage);
     const changeLanguage = useGame((state) => state.changeLanguage);
     const onUpdateLanguage = useGame((state) => state.onUpdateLanguage);
 
-    const onButtonClick = () => {
+    const onStartClick = () => {
         // const changeToStage = STAGES.CHARACTER_SELECTION_STAGE;
         const changeToStage = STAGES.PLAY_STAGE;
         changeStage(changeToStage);
@@ -20,14 +20,15 @@ export default function IntroInterface()
     const onButtonLanguageClick = (languageId) => {
         changeLanguage(languageId);
         onUpdateLanguage(languageId);
+        onStartClick();
     };
 
     return <div className="intro-container">
         <div className="title">
-            <h1>{TRANSLATIONS.introStage[language]}</h1>
+            <h1>{useTranslation(TRANSLATIONS.introStage)}</h1>
         </div>
 
-        <button className="btn-start blinking" onClick={onButtonClick}>{TRANSLATIONS.start[language]}</button>
+        {/* <button className="btn-start blinking" onClick={onStartClick}>{useTranslation(TRANSLATIONS.start)}</button> */}
 
         <div className="languages">
             { LANGUAGES.map((language, index) => {

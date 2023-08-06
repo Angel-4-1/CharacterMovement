@@ -70,6 +70,17 @@ export default create(subscribeWithSelector((set) => {
         },
 
         /**
+         * Camera
+         */
+        freeCam: false,
+
+        setFreeCam: ( freeCameEnabled ) => {
+            set(() => {
+                return { freeCam: freeCameEnabled }
+            })
+        },
+
+        /**
          * Language
          */
         language: LANGUAGES[0].id,

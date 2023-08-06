@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react'
-import { useGLTF, useFBX, useAnimations, useKeyboardControls } from '@react-three/drei'
+import { useGLTF, useKeyboardControls } from '@react-three/drei'
 import { useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three'
-import { RigidBody, useRapier, MeshCollider, CapsuleCollider, CuboidCollider  } from "@react-three/rapier"
+import { RigidBody, useRapier } from "@react-three/rapier"
 import { Avatar } from './Avatar';
 import usePlayer, { ANIMATIONS } from '../stores/usePlayer';
+import useGame from '../stores/useGame';
 import gsap from 'gsap'
 
 export function Player(props) {
@@ -20,6 +21,8 @@ export function Player(props) {
     const onUpdateAnimation = usePlayer((state) => state.onUpdateAnimation);
     const changeAnimation = usePlayer((state) => state.changeAnimation);
     const animation = usePlayer((state) => state.animation);
+
+    const freeCam = useGame((state) => state.freeCam);
 
     const [canJump, setCanJump] = useState(true);
     const [hasJumped, setHasJumped] = useState(false);
@@ -49,30 +52,6 @@ export function Player(props) {
     const [ smoothCameraPosition ] = useState(() => new THREE.Vector3( 10, 10, 10 ));
     const [ smoothCameraTarget ] = useState(() => new THREE.Vector3());
 
-    const updateCamera = (state, delta) => {
-        /**
-         * Camera
-         */
-        const bodyPosition = body.current.translation();
-
-        const cameraPosition = new THREE.Vector3();
-        cameraPosition.copy( bodyPosition );
-        cameraPosition.z -= 5;
-        cameraPosition.y += 4;
-
-        const cameraTarget = new THREE.Vector3();
-        cameraTarget.copy( bodyPosition );
-        cameraTarget.y += 1;
-
-        // Do a smooth lerp
-        smoothCameraPosition.lerp( cameraPosition, 5 * delta );
-        smoothCameraTarget.lerp( cameraTarget, 5 * delta );
-
-        // Update camera
-        state.camera.position.copy( smoothCameraPosition );
-        state.camera.lookAt( smoothCameraTarget );
-    }
-
     const cameraFollowPlayer = (state, delta) => {
         const characterWorldPosition = character.current.getWorldPosition( new THREE.Vector3() );
         state.camera.position.x = characterWorldPosition.x;
@@ -93,7 +72,6 @@ export function Player(props) {
 
         // We want to be at the bottom of the sphere
         origin.y += 1.1;
-        console.log(origin)
 
         // Ray direction
         const direction = { x: 0, y: -1, z: 0 };
@@ -103,10 +81,9 @@ export function Player(props) {
 
         // Cast the ray (consider everything as solid) 
         const hit = rapierWorld.castRay( ray, 10, true );
-        console.log(hit)
+
         // Distance between ray origin and collision
         const distance = hit.toi;
-        //console.log(distance)
 
         if( distance < 0.01 )
             body.current.applyImpulse({ x: 0, y: 0.25, z: 0 });
@@ -165,7 +142,6 @@ export function Player(props) {
 
         if( changeRotation ) {
             const angle = Math.atan2( linvel.x, linvel.z );
-            //character.current.rotation.y = angle;
             gsap.to( character.current.rotation, { duration: 1, delay: 0, y: angle } )
         }
 
@@ -188,15 +164,10 @@ export function Player(props) {
     }
 
     useFrame((state, delta) => {
-        // headFollow && body.current.getObjectByName("Neck").lookAt(state.camera.position)
-        // if (cursorFollow) {
-        //     const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
-        //     body.current.getObjectByName("Spine2").lookAt(target)
-        // }
-
-        updatePosition(state, delta);
-        //updateCamera(state, delta);
-        cameraFollowPlayer( state, delta );
+        if(!freeCam) {
+            updatePosition(state, delta);
+            cameraFollowPlayer( state, delta );
+        } 
     });
 
     useEffect(() => {
@@ -237,20 +208,10 @@ export function Player(props) {
         }
     }, [hasJumped])
 
-    // document.addEventListener('keydown', (event) => {
-    //     var name = event.key;
-    //     var code = event.code;
-    //     // Alert the key name and key code on keydown
-    //     console.log(`Key pressed ${name} \r\n Key code value: ${code}`);
-    //   }, false);
-
     return (
         <RigidBody
             ref={ body }
             position={[0, 2, 0]}
-            //colliders={false}
-            //restitution={ 0.2 }
-            //friction={ 0.8 }
             friction={ 0.16 * walk_speed }
             enabledRotations={[false, false, false]}
             onCollisionEnter={() => {
