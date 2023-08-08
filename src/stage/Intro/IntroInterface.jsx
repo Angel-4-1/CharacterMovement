@@ -1,6 +1,6 @@
 import { TRANSLATIONS } from "../../translations"
 import useGame, { STAGES, LANGUAGES } from '../../stores/useGame';
-import { useTranslation } from "../../useTranslation";
+import { useTranslation } from "../../utils/useTranslation";
 import './style.css'
 
 export default function IntroInterface()

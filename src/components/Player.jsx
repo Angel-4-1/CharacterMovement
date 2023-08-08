@@ -54,16 +54,29 @@ export function Player(props) {
 
     const cameraFollowPlayer = (state, delta) => {
         const characterWorldPosition = character.current.getWorldPosition( new THREE.Vector3() );
-        state.camera.position.x = characterWorldPosition.x;
-        state.camera.position.z = characterWorldPosition.z - 10;
+        //state.camera.position.x = characterWorldPosition.x;
+        //state.camera.position.z = characterWorldPosition.z - 10;
 
-        const targetLookAt = new THREE.Vector3(
+        const OFFSET_Y = 1.75;
+        const cameraPosition = new THREE.Vector3();
+        cameraPosition.copy( characterWorldPosition );
+        cameraPosition.x = characterWorldPosition.x;
+        cameraPosition.y += OFFSET_Y;
+        cameraPosition.z = characterWorldPosition.z - 10;
+
+        const cameraTarget = new THREE.Vector3(
             characterWorldPosition.x,
-            0.5,
+            cameraPosition.y,
             characterWorldPosition.z
         );
+        
+        // Do a smooth lerp
+        smoothCameraPosition.lerp( cameraPosition, 5 * delta );
+        smoothCameraTarget.lerp( cameraTarget, 5 * delta );
 
-        state.camera.lookAt( targetLookAt );
+        // Update camera
+        state.camera.position.copy( smoothCameraPosition );
+        state.camera.lookAt( smoothCameraTarget );
     }
 
     const onJump = () => {

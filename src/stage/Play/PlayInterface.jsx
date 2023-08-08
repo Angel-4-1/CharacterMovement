@@ -1,7 +1,7 @@
 import { TRANSLATIONS } from "../../translations"
 import { useKeyboardControls } from '@react-three/drei'
 import './style.css'
-import { useTranslation } from "../../useTranslation";
+import { useTranslation } from "../../utils/useTranslation";
 import useGame from '../../stores/useGame'
 
 export default function PlayInterface()

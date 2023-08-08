@@ -4,12 +4,15 @@ import PlayStage from './stage/Play/PlayStage.jsx'
 import useGame, { STAGES, STAGES_NAMES, LANGUAGES } from './stores/useGame.js';
 import Show from './components/Show.jsx';
 import { Leva, useControls } from 'leva';
+import { useDebug } from './utils/useDebug.jsx';
 // import CharacterSelectionStage from './stage/CharacterSelection/CharacterSelectionStage.jsx';
 
 export default function Experience() {
     const stage = useGame((state) => state.stage);
     const changeStage = useGame((state) => state.changeStage);
     const changeLanguage = useGame((state) => state.changeLanguage);
+
+    const isDebugActive = useDebug();
 
     const [{ data_stage, data_language }, set, get] = useControls('Experience', () => ({
         data_stage: {
@@ -62,7 +65,9 @@ export default function Experience() {
     return <>
         <color args={['#252731']} attach="background" />
 
-        {/* <Leva hidden/> */}
+        <Show when={!isDebugActive}>
+            <Leva hidden/>
+        </Show>
 
         <Show when={stage === STAGES.INTRO_STAGE}>
             <IntroStage />

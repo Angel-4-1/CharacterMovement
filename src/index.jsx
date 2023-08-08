@@ -31,7 +31,6 @@ function App() {
                     near: 0.001,
                     far: 2000,
                     position: [ 6, 1.5, -7 ]
-                    //position: [ 0, 2, 5 ]
                 } }
             >
                 <Show when={progress === 100}>

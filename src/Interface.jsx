@@ -15,10 +15,5 @@ export default function Interface()
         <Show when={stage === STAGES.PLAY_STAGE}>
             <PlayInterface />
         </Show>
-        {/* <Show when={stage === STAGES.CHARACTER_SELECTION_STAGE}>
-            <CharacterSelectionInterface />
-        </Show>
-
-*/}
     </>
 }
