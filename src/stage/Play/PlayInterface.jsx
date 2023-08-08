@@ -26,7 +26,8 @@ export default function PlayInterface()
                 <input type="checkbox" onClick={checkBoxClick} onKeyDown={() => {}}></input>
                 <span className="slider round"></span>
             </label>
-            Free camera
+            <p>{useTranslation(TRANSLATIONS.controls.freeCamera)}</p>
+            
         </div>
         {/* Keyboard */}
         <div className="controls">
@@ -41,8 +42,8 @@ export default function PlayInterface()
                     <div className={ `key text-centered ${ leftward ? 'active' : '' }` }>
                         <span>{useTranslation(TRANSLATIONS.controls.leftward.key)}</span>
                     </div>
-                        <div className={ `key text-centered ${ backward ? 'active' : '' }` }>
-                    <span>{useTranslation(TRANSLATIONS.controls.backward.key)}</span>
+                    <div className={ `key text-centered ${ backward ? 'active' : '' }` }>
+                        <span>{useTranslation(TRANSLATIONS.controls.backward.key)}</span>
                     </div>
                     <div className={ `key text-centered ${ rightward ? 'active' : '' }` }>
                         <span>{useTranslation(TRANSLATIONS.controls.rightward.key)}</span>

@@ -27,5 +27,6 @@ export const TRANSLATIONS = {
             key: [ "Space", "Espacio" ],
             definition: [ "Jump", "Saltar" ],
         },
+        freeCamera: [ "Free camera", "Camara libre" ]
     }
 }

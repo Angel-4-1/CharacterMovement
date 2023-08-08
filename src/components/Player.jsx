@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { useGLTF, useKeyboardControls } from '@react-three/drei'
+import { 
+    useGLTF,
+    useKeyboardControls} from '@react-three/drei'
 import { useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three'
-import { RigidBody, useRapier } from "@react-three/rapier"
+import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
 import { Avatar } from './Avatar';
 import usePlayer, { ANIMATIONS } from '../stores/usePlayer';
 import useGame from '../stores/useGame';
@@ -26,7 +28,6 @@ export function Player(props) {
 
     const [canJump, setCanJump] = useState(true);
     const [hasJumped, setHasJumped] = useState(false);
-    const [isRunning, setIsRunning] = useState(false);
 
     // Leva Controls
     const { walk_speed, run_speed } = useControls('Player', {
@@ -54,8 +55,6 @@ export function Player(props) {
 
     const cameraFollowPlayer = (state, delta) => {
         const characterWorldPosition = character.current.getWorldPosition( new THREE.Vector3() );
-        //state.camera.position.x = characterWorldPosition.x;
-        //state.camera.position.z = characterWorldPosition.z - 10;
 
         const OFFSET_Y = 1.75;
         const cameraPosition = new THREE.Vector3();
@@ -231,7 +230,9 @@ export function Player(props) {
                 setCanJump(true);
                 setHasJumped(false);
             }}
+            colliders={false}
         >
+            <CapsuleCollider args={[0.5, 0.35]} position={[0, 0.8, 0]}/>
             <group ref={character}>
                 <Avatar />
             </group>
