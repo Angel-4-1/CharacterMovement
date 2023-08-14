@@ -1,0 +1,40 @@
+# Made using Asset Forge (2.2.0)
+
+:materials
+
+[name:StoneDark;color:RGBA(0.101, 0.118, 0.128, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Stone;color:RGBA(0.192, 0.228, 0.246, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:BrownDark;color:RGBA(0.327, 0.102, 0.059, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:PurpleDark;color:RGBA(0.065, 0.058, 0.165, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:White;color:RGBA(0.799, 0.799, 0.799, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Metal;color:RGBA(0.401, 0.478, 0.517, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:BlueDark;color:RGBA(0.131, 0.253, 0.408, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:GreenDark;color:RGBA(0.021, 0.257, 0.267, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:WoodDark;color:RGBA(0.154, 0.117, 0.106, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Black;color:RGBA(0.020, 0.032, 0.037, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Gold;color:RGBA(0.497, 0.334, 0.106, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Beige;color:RGBA(0.703, 0.425, 0.207, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+
+:models
+
+[name:;collection:Kay - Dungeon;type:wallSingle_broken;position:(6.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wall;position:(2.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wallSingle_decorationB;position:(-2.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wallCorner;position:(-6.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:bookcaseWide_broken;position:(11.0000, 0.0000, 5.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark;]
+[name:;collection:Kay - Dungeon;type:bookcaseFilled;position:(0.0000, 0.0000, 5.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+PurpleDark+White+Metal+BlueDark+GreenDark+WoodDark+Black;]
+[name:;collection:Kay - Dungeon;type:coinsLarge;position:(-5.0000, 0.0000, 5.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Gold;]
+[name:;collection:Kay - Dungeon;type:torchWall;position:(9.0000, 2.0000, 5.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Metal+WoodDark+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wallSingle;position:(18.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wall_end_broken;position:(19.9000, 0.0000, 4.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wall;position:(-6.0000, 0.0000, 8.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wall_end;position:(-6.0000, 0.0000, 9.8000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:torch;position:(-6.0000, 2.0000, 12.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Metal+WoodDark;]
+[name:;collection:Kay - Dungeon;type:torchWall;position:(17.6000, 2.0000, 5.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Metal+WoodDark+StoneDark;]
+[name:;collection:Kay - Dungeon;type:wall;position:(10.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:pillar_broken;position:(8.0000, 0.0000, 11.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:pillar_broken;position:(20.5000, 0.0000, 11.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark;]
+[name:;collection:Kay - Dungeon;type:barrel;position:(22.2000, 0.5000, 6.0000);rotation:(0.0000, 0.0000, 270.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Beige+Metal;]
+[name:;collection:Kay - Dungeon;type:barrel;position:(22.2000, 0.5000, 7.0000);rotation:(0.0000, 0.0000, 270.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Beige+Metal;]
+[name:;collection:Kay - Dungeon;type:barrel;position:(22.2000, 1.2000, 6.5000);rotation:(0.0000, 0.0000, 270.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:BrownDark+Beige+Metal;]
+[name:;collection:Kay - Dungeon;type:wall_gateDoor;position:(14.0000, 0.0000, 4.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Stone+StoneDark+Black;]
