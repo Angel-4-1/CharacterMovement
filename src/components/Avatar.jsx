@@ -90,4 +90,4 @@ export function Avatar(props) {
     )
 }
 
-useGLTF.preload('/character.glb')
+useGLTF.preload('models/character.glb');

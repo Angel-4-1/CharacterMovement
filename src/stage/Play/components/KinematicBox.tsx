@@ -15,6 +15,7 @@ export interface KinematicBoxProps {
 	rotationZ?: number;
 	color?: string;
 	showEdges?: boolean;
+	id: string;
 }
 
 const KinematicBox: FC<KinematicBoxProps> = ({
@@ -26,6 +27,7 @@ const KinematicBox: FC<KinematicBoxProps> = ({
 	rotationZ = 0,
 	color = "#ac88b7",
 	showEdges = false,
+	id,
 }) => {
 	let positionAsVector3 = new Vector3(position[0], position[1], position[2]);
 	let sizeAsVector3 = new Vector3(size[0], size[1], size[2]);
@@ -50,7 +52,7 @@ const KinematicBox: FC<KinematicBoxProps> = ({
   });
 
 	return <RigidBody type="kinematicPosition" ref={ box }>
-		<Wrapper showPivotControls={showPivotControls}>
+		<Wrapper showPivotControls={showPivotControls} id={id}>
 			<mesh receiveShadow position={positionAsVector3}
 				rotation-x={rotationX}
 				rotation-z={rotationZ}

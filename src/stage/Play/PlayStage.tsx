@@ -15,6 +15,7 @@ import Floor from './components/Floor';
 import Box from './components/Box';
 import KinematicBox from './components/KinematicBox';
 import Stairs from './components/Stairs';
+import Scenario from './components/Scenario';
 
 export default function PlayStage() {
   const freeCam = useGame((state) => state.freeCam);
@@ -96,10 +97,11 @@ export default function PlayStage() {
 
       <Floor showEdges={showEdges}/>
 
-      <Stairs numStairs={10} showEdges={showEdges} showPivotControls={isDebugActive}/>
+      {/* <Stairs numStairs={10} showEdges={showEdges} showPivotControls={isDebugActive}/> */}
       
       { /* Ramp */ }
       <Box
+        id="Ramp1"
         position={[0, 0.45, 10]}
         size={[5, 0.1, 5]}
         showEdges={showEdges}
@@ -109,6 +111,7 @@ export default function PlayStage() {
       />
       
       <Box
+        id="Ramp1.5"
         position={[0, 0.85, 15]}
         size={[5, 0.1, 5]}
         showEdges={showEdges}
@@ -118,6 +121,7 @@ export default function PlayStage() {
       
       { /* Ramp 2*/ }
       <Box
+        id="Ramp2"
         position={[5, 1.3, 15]}
         size={[5, 0.1, 5]}
         showEdges={showEdges}
@@ -128,11 +132,14 @@ export default function PlayStage() {
       
       {/* Elevator */}
       <KinematicBox
+        id="Elevator"
         position={[5, 0, 7.5]}
         size={[4, 0.1, 4]}
         showEdges={showEdges}
         showPivotControls={isDebugActive}
       />
+
+      <Scenario position={[10, 0, 10]} isDebug={isDebugActive}/>
     </Physics>
   </>
 }
