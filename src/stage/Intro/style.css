@@ -12,17 +12,18 @@
     backdrop-filter: blur(4px);
 }
 
-.title h1 {
+.version {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 5vw;
+}
+
+.white-text {
     color: #fff;
 }
 
 .btn-start {
-    /* background: rgba(255, 255, 255, 0.6); */
-    /* padding: 16px 32px; */
-    /* border-radius: 10%; */
-    /* border: none; */
-    /* transition: background-color 0.4s; */
-    /* font-size: 3vh; */
     margin: 10px;
     text-transform: uppercase;
 

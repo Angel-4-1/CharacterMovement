@@ -25,7 +25,7 @@ export default function IntroInterface()
 
     return <div className="intro-container">
         <div className="title">
-            <h1>{useTranslation(TRANSLATIONS.introStage)}</h1>
+            <h1 className="white-text">{useTranslation(TRANSLATIONS.introStage)}</h1>
         </div>
 
         {/* <button className="btn-start blinking" onClick={onStartClick}>{useTranslation(TRANSLATIONS.start)}</button> */}
@@ -43,6 +43,10 @@ export default function IntroInterface()
                 onClick={() => onButtonLanguageClick(language.id)}
                 >{language.name}</button>
             })}
+        </div>
+
+        <div className="version">
+            <h4 className="white-text">{APP_VERSION}</h4>
         </div>
     </div>
 }
