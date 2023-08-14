@@ -1,11 +1,10 @@
 
-import IntroStage from './stage/Intro/IntroStage.jsx'
-import PlayStage from './stage/Play/PlayStage.jsx'
-import useGame, { STAGES, STAGES_NAMES, LANGUAGES } from './stores/useGame.js';
-import Show from './components/Show.jsx';
+import IntroStage from './stage/Intro/IntroStage'
+import PlayStage from './stage/Play/PlayStage'
+import useGame, { STAGES, STAGES_NAMES, LANGUAGES } from './stores/useGame';
+import Show from './components/Show';
 import { Leva, useControls } from 'leva';
-import { useDebug } from './utils/useDebug.jsx';
-// import CharacterSelectionStage from './stage/CharacterSelection/CharacterSelectionStage.jsx';
+import { useDebug } from './utils/useDebug';
 
 export default function Experience() {
     const stage = useGame((state) => state.stage);
