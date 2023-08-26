@@ -6,11 +6,38 @@ import { useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three'
-import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier"
+import { CapsuleCollider, RigidBody, TrimeshCollider, useRapier } from "@react-three/rapier"
 import { Avatar } from './Avatar';
 import usePlayer, { ANIMATIONS } from '../stores/usePlayer';
-import useGame from '../stores/useGame';
+import useGame, { CAMERA_TYPES } from '../stores/useGame';
 import gsap from 'gsap'
+
+const cameraOffset = {
+    isometric: {
+        position: {
+            x: -8,
+            y: 4,
+            z: -10,
+        },
+        target: {
+            x: -1,
+            y: -2,
+            z: 0,
+        }
+    },
+    perspective: {
+        position: {
+            x: 0,
+            y: 1.75,
+            z: -10,
+        },
+        target: {
+            x: 0,
+            y: 0,
+            z: 0,
+        }
+    }
+};
 
 export function Player(props) {
     const body = useRef();
@@ -25,7 +52,9 @@ export function Player(props) {
     const animation = usePlayer((state) => state.animation);
 
     const freeCam = useGame((state) => state.freeCam);
+    const cameraType = useGame((state) => state.cameraType);
 
+    const [cameraTypeOffset, setCameraTypeOffset] = useState(cameraOffset.isometric);
     const [canJump, setCanJump] = useState(true);
     const [hasJumped, setHasJumped] = useState(false);
 
@@ -56,17 +85,16 @@ export function Player(props) {
     const cameraFollowPlayer = (state, delta) => {
         const characterWorldPosition = character.current.getWorldPosition( new THREE.Vector3() );
 
-        const OFFSET_Y = 1.75;
         const cameraPosition = new THREE.Vector3();
         cameraPosition.copy( characterWorldPosition );
-        cameraPosition.x = characterWorldPosition.x;
-        cameraPosition.y += OFFSET_Y;
-        cameraPosition.z = characterWorldPosition.z - 10;
+        cameraPosition.x = characterWorldPosition.x + cameraTypeOffset.position.x;
+        cameraPosition.y += cameraTypeOffset.position.y;
+        cameraPosition.z = characterWorldPosition.z + cameraTypeOffset.position.z;
 
         const cameraTarget = new THREE.Vector3(
-            characterWorldPosition.x,
-            cameraPosition.y,
-            characterWorldPosition.z
+            characterWorldPosition.x + cameraTypeOffset.target.x,
+            cameraPosition.y + cameraTypeOffset.target.y,
+            characterWorldPosition.z + cameraTypeOffset.target.z
         );
         
         // Do a smooth lerp
@@ -157,20 +185,22 @@ export function Player(props) {
             gsap.to( character.current.rotation, { duration: 1, delay: 0, y: angle } )
         }
 
-        if( linvelXAbs || linvelZAbs ) {
-            if( shiftLeft ) {
-                if (animation != ANIMATIONS.RUN) {
-                    updateAnimation(ANIMATIONS.RUN);
+        if (!hasJumped) {
+            if( linvelXAbs || linvelZAbs ) {
+                if( shiftLeft ) {
+                    if (animation != ANIMATIONS.RUN) {
+                        updateAnimation(ANIMATIONS.RUN);
+                    }
+                } else {
+                    if (animation != ANIMATIONS.WALK) {
+                        updateAnimation(ANIMATIONS.WALK);
+                    }
                 }
+                
             } else {
-                if (animation != ANIMATIONS.WALK) {
-                    updateAnimation(ANIMATIONS.WALK);
+                if (animation != ANIMATIONS.IDLE) {
+                    updateAnimation(ANIMATIONS.IDLE);
                 }
-            }
-            
-        } else {
-            if (animation != ANIMATIONS.IDLE) {
-                updateAnimation(ANIMATIONS.IDLE);
             }
         }
     }
@@ -218,7 +248,16 @@ export function Player(props) {
             onUpdateAnimation(ANIMATIONS.JUMP);
             changeAnimation(ANIMATIONS.JUMP)
         }
+        console.log(hasJumped)
     }, [hasJumped])
+
+    const updateCameraType = () => {
+        return CAMERA_TYPES.ISOMETRIC === cameraType ? cameraOffset.isometric : cameraOffset.perspective;
+    }
+    
+    useEffect(() => {
+        setCameraTypeOffset(updateCameraType());
+    }, [cameraType])
 
     return (
         <RigidBody
@@ -233,6 +272,7 @@ export function Player(props) {
             colliders={false}
         >
             <CapsuleCollider args={[0.5, 0.35]} position={[0, 0.8, 0]}/>
+            {/* <TrimeshCollider /> */}
             <group ref={character}>
                 <Avatar />
             </group>

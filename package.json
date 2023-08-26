@@ -1,7 +1,7 @@
 {
   "name": "threejs-journey-exercise",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +15,7 @@
     "@react-three/drei": "^9.50.3",
     "@react-three/fiber": "^8.9.2",
     "@react-three/rapier": "^0.9.0",
+    "@react-three/postprocessing": "2.6",
     "@types/node": "^20.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",

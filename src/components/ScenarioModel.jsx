@@ -85,7 +85,7 @@ export default function ScenarioModel(props) {
         <PointLight isDebug={props.isDebug}/>
       </group>
       {/* Light */}
-      <group position={[17.6, 2, -5]}>
+      <group position={[17.6, 2, -5]} opacity={0} transparent>
         <mesh geometry={nodes.mesh_13.geometry} material={materials['BrownDark(Clone)']} />
         <mesh geometry={nodes.mesh_13_1.geometry} material={materials['Metal(Clone)']} />
         <mesh geometry={nodes.mesh_13_2.geometry} material={materials['WoodDark(Clone)']} />

@@ -8,7 +8,7 @@ import { Physics, Debug } from '@react-three/rapier'
 import { Perf } from 'r3f-perf';
 import { Player } from '~/components/Player';
 import Show from '~/components/Show';
-import useGame from '~/stores/useGame'
+import useGame, { CAMERA_TYPES } from '~/stores/useGame'
 import { useDebug } from '~/utils/useDebug';
 import { degToRad } from '~/utils/angleFunctions';
 import Floor from './components/Floor';
@@ -20,6 +20,8 @@ import Scenario from './components/Scenario';
 export default function PlayStage() {
   const freeCam = useGame((state) => state.freeCam);
   const setFreeCam = useGame((state) => state.setFreeCam);
+  const cameraType = useGame((state) => state.cameraType);
+  const setCameraType = useGame((state) => state.setCameraType);
   const isDebugActive = useDebug();
   const start = useGame((state) => state.start);
 
@@ -30,6 +32,22 @@ export default function PlayStage() {
     freeCam: {
       value: freeCam,
       onChange: (value) => setFreeCam(value)
+    },
+    cameraType: {
+      value: 'Isometric',
+      options: ['Perspective', 'Isometric'],
+      onChange: (value) => {
+          switch (value) {
+              case 'Perspective':
+                setCameraType(CAMERA_TYPES.PERSPECTIVE);
+                break;
+              case 'Isometric':
+                setCameraType(CAMERA_TYPES.ISOMETRIC);
+                break;
+              default:
+                break;
+          }
+      }
     }
   });
 

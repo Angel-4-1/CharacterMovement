@@ -28,5 +28,10 @@ export const TRANSLATIONS = {
             definition: [ "Jump", "Saltar" ],
         },
         freeCamera: [ "Free camera", "Camara libre" ]
+    },
+
+    camera: {
+        perspective: ['Perspective', 'Perspectiva'],
+        isometric: ['Isometric', 'Isometrica'],
     }
 }

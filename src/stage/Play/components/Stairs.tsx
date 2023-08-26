@@ -21,6 +21,7 @@ const Stairs: FC<StairsProps> = ({
 				placeAtFloor={true}
 				showPivotControls={showPivotControls}
 				key={`stair-${index}`}
+				id={`stair-${index}`}
 			/>
 		)}
 	</>

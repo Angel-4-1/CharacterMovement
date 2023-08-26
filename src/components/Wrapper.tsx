@@ -52,8 +52,7 @@ const Wrapper: FC<WrapperProps> = ({
 				// I'm never sure whether to grab "l" or "w" here... sorry
 				w.decompose(position, rotation, new Vector3())
 				setPos(position)
-				setRot(rotation)				
-				// console.log(new Euler().setFromQuaternion( rotation ) )
+				//setRot(rotation)
 		}}
 		>
 			{children}

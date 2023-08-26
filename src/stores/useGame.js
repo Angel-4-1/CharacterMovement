@@ -29,6 +29,11 @@ export const PHASES = {
     ended: "ended",
 };
 
+export const CAMERA_TYPES = {
+    PERSPECTIVE: 0,
+    ISOMETRIC: 1,
+};
+
 export default create(subscribeWithSelector((set) => {
     return {
         blocksCount: 10,
@@ -77,6 +82,14 @@ export default create(subscribeWithSelector((set) => {
         setFreeCam: ( freeCameEnabled ) => {
             set(() => {
                 return { freeCam: freeCameEnabled }
+            })
+        },
+
+        cameraType: CAMERA_TYPES.ISOMETRIC,
+
+        setCameraType: ( cameraTypeSelected ) => {
+            set(() => {
+                return { cameraType: cameraTypeSelected }
             })
         },
 

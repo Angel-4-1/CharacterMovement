@@ -2,7 +2,7 @@ import { TRANSLATIONS } from "../../translations"
 import { useKeyboardControls } from '@react-three/drei'
 import './style.css'
 import { useTranslation } from "../../utils/useTranslation";
-import useGame from '../../stores/useGame'
+import useGame, { CAMERA_TYPES } from '../../stores/useGame'
 
 export default function PlayInterface()
 {
@@ -15,10 +15,17 @@ export default function PlayInterface()
 
     const freeCam = useGame((state) => state.freeCam);
     const setFreeCam = useGame((state) => state.setFreeCam);
+    
+    // const cameraType = useGame((state) => state.cameraType);
+    // const setCameraType = useGame((state) => state.setCameraType);
 
     const checkBoxClick = (event) => {
         setFreeCam(!freeCam);
     }
+    
+    // const isActive = () => {
+    //     return CAMERA_TYPES.ISOMETRIC === cameraType;
+    // }
 
     return <div className="play-container">
         <div className="options">
@@ -27,8 +34,27 @@ export default function PlayInterface()
                 <span className="slider round"></span>
             </label>
             <p>{useTranslation(TRANSLATIONS.controls.freeCamera)}</p>
-            
         </div>
+
+        {/* <form>
+            <fieldset className="camera-options">
+                <legend>Choose your camera preference</legend>
+                <div className="form__group">
+                    <input type="radio" id="perspective" value="perspective" name="camera-type"
+                        onChange={() => setCameraType(CAMERA_TYPES.PERSPECTIVE)}
+                    />
+                    <label>{useTranslation(TRANSLATIONS.camera.perspective)}</label>
+                </div>
+                <div className="form__group">
+                    <input type="radio" id="isometric" value="isometric" name="camera-type"
+                        checked
+                        onChange={() => setCameraType(CAMERA_TYPES.ISOMETRIC)}
+                    />
+                    <label>{useTranslation(TRANSLATIONS.camera.isometric)}</label>
+                </div>
+            </fieldset>
+        </form> */}
+
         {/* Keyboard */}
         <div className="controls">
             { /* Arrows */ }

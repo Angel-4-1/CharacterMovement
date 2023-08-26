@@ -98,6 +98,24 @@
     background: #ffffff99;
 }
 
+/** Camera Options**/
+.camera-options {
+    position: absolute;
+    left: 3%;
+    pointer-events: auto;
+}
+
+.form__group {
+	display: flex;
+	align-items: center;
+}
+
+.camera-options input[type="radio"]{
+	width: 1.5em;
+	height: 1.5em;
+	margin-right: 0.65rem;
+}
+
 /** Switch **/
 .switch {
     position: relative;

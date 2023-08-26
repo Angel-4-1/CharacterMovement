@@ -48,11 +48,25 @@ export function Avatar(props) {
     );
 
     useEffect(() => {
-        actions[animation]?.reset().fadeIn(0.5).play();
+        console.log(animation)
+        console.log(PLAYER_ANIMATIONS[ANIMATIONS.JUMP].name)
+        if(animation === PLAYER_ANIMATIONS[ANIMATIONS.JUMP].name) {
+            console.log(actions[animation])
+            //actions[animation].timeScale = 2;
+            actions[animation]?.reset().play();
+        } else {
+            actions[animation]?.reset().fadeIn(0.5).play();
+        }
 
         // Stop previous animation
         return () => {
-            actions[animation]?.fadeOut(0.5);
+            if(animation.name === PLAYER_ANIMATIONS[ANIMATIONS.JUMP].name) {
+                console.log('fadeout')
+                actions[animation]?.fadeOut(0);
+            } else {
+                actions[animation]?.fadeOut(0.5);
+            }
+            
         }
     }, [animation])
 
